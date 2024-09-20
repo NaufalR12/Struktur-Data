@@ -1,0 +1,2 @@
+
+        if (frontPasien == -1) {

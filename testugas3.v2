@@ -1,0 +1,46 @@
+void hapusList(int target) {
+    if (awallist == -1) {
+        cout << "=======================================" << endl;
+        cout << "      Tidak ada data buku tersedia     " << endl;
+        cout << "=======================================" << endl;
+        return;
+    }
+
+    int indeksHapus = -1;
+    int bantu = awallist;
+    int sebelumBantu = -1;
+
+    while (bantu != -1) {
+        if (elemen[bantu].info.noBuku == target) {
+            indeksHapus = bantu;
+            break;
+        }
+        sebelumBantu = bantu;
+        bantu = elemen[bantu].next;
+    }
+
+    if (indeksHapus == -1) {
+        cout << "=======================================" << endl;
+        cout << "          Data tidak ditemukan         " << endl;
+        cout << "=======================================" << endl;
+        return;
+    }
+
+    if (indeksHapus == awallist) {
+        awallist = elemen[indeksHapus].next;
+    }
+    else if (indeksHapus == akhirlist) {
+        akhirlist = sebelumBantu;
+        elemen[sebelumBantu].next = -1;
+    }
+    else {
+        elemen[sebelumBantu].next = elemen[indeksHapus].next;
+    }
+
+    elemen[indeksHapus].next = listkosong;
+    listkosong = indeksHapus;
+
+    cout << "=======================================" << endl;
+    cout << "        Data berhasil dihapus          " << endl;
+    cout << "=======================================" << endl;
+}
